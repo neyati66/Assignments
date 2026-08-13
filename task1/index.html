@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neyati · AI & ML</title>
+  <style>
+    /* ----- reset & base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f8fafc;
+      color: #0b1a2e;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ----- header (dark & minimal) ----- */
+    header {
+      background: #0b1a2e;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #1f334b;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo h1 {
+      color: white;
+      font-weight: 600;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      transition: color 0.2s;
+    }
+    .logo h1:hover {
+      color: #7aa9ff;
+    }
+    .logo p {
+      color: #9bb3d1;
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-top: 2px;
+      letter-spacing: 0.3px;
+    }
+
+    nav a {
+      color: #dce5f0;
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    nav a:hover {
+      color: #7aa9ff;
+      border-bottom-color: #7aa9ff;
+    }
+
+    /* ----- hero (soft gradient, modern) ----- */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem 2rem 5rem;
+      background: linear-gradient(135deg, #eef4ff 0%, #ffffff 80%);
+      border-radius: 0 0 48px 48px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-content {
+      max-width: 55%;
+    }
+    .hero-content .greeting {
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.2rem;
+    }
+    .hero-content h1 {
+      font-size: 3.6rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin: 0.2rem 0 0.1rem;
+      color: #0b1a2e;
+    }
+    .hero-content h2 {
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: #2c3e5c;
+      margin-bottom: 0.8rem;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #334155;
+      max-width: 480px;
+      margin: 1.2rem 0 2rem;
+    }
+
+    .hero-image {
+      flex-shrink: 0;
+    }
+    .hero-image img {
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid white;
+      box-shadow: 0 20px 40px -12px rgba(0, 20, 50, 0.25);
+      outline: 2px solid #2563eb;
+      transition: transform 0.35s ease, box-shadow 0.35s;
+    }
+    .hero-image img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 30px 50px -14px #1e3a6b80;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 2.2rem;
+      font-weight: 600;
+      border-radius: 40px;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      background: #1e3a6b;
+      color: white;
+      box-shadow: 0 6px 14px -6px #1e3a6b60;
+    }
+    .btn-outline {
+      background: transparent;
+      color: #1e3a6b;
+      border: 2px solid #1e3a6b;
+      box-shadow: none;
+    }
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px -10px #1e3a6b90;
+    }
+    .btn-outline:hover {
+      background: #1e3a6b;
+      color: white;
+    }
+
+    /* ----- section titles (consistent) ----- */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 650;
+      letter-spacing: -0.3px;
+      margin-bottom: 2rem;
+      color: #0b1a2e;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .section-title .badge {
+      background: #dce6f5;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1e3a6b;
+    }
+
+    /* ----- about (clean) ----- */
+    .about {
+      padding: 3rem 2rem 4rem;
+      background: white;
+    }
+    .about p {
+      font-size: 1.1rem;
+      color: #1e293b;
+      max-width: 780px;
+      margin-bottom: 1.5rem;
+    }
+    .about .highlight {
+      color: #2563eb;
+      font-weight: 500;
+    }
+
+    /* ----- skills (fresh card style) ----- */
+    .skills {
+      background: #f1f6fe;
+      padding: 3.5rem 2rem 4.5rem;
+    }
+    .skill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: white;
+      width: 130px;
+      height: 130px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #0b1a2e;
+      border: 1px solid #dce6f2;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.02);
+      transition: 0.3s ease;
+      cursor: default;
+    }
+    .skill-card:hover {
+      background: #1e3a6b;
+      color: white;
+      transform: translateY(-8px);
+      box-shadow: 0 20px 32px -14px #1e3a6b70;
+      border-color: #1e3a6b;
+    }
+
+    /* ----- education (table with softer feel) ----- */
+    .education {
+      padding: 3.5rem 2rem 4.5rem;
+      background: white;
+    }
+    .edu-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+    }
+    .edu-table th {
+      background: #0b1a2e;
+      color: white;
+      padding: 1rem 1.5rem;
+      font-weight: 500;
+      text-align: left;
+    }
+    .edu-table td {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #eaf0f8;
+      color: #1e293b;
+    }
+    .edu-table tr:last-child td {
+      border-bottom: none;
+    }
+    .edu-table tr:hover td {
+      background: #f5faff;
+    }
+
+    /* ----- projects (cards with depth) ----- */
+    .projects {
+      background: #f1f6fe;
+      padding: 3.5rem 2rem 4.5rem;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: white;
+      padding: 1.8rem 1.8rem 2.2rem;
+      border-radius: 32px;
+      border: 1px solid #dce6f2;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+      transition: 0.3s ease;
+    }
+    .project-card:hover {
+      background: #0b1a2e;
+      color: white;
+      transform: translateY(-8px);
+      border-color: #0b1a2e;
+      box-shadow: 0 24px 44px -16px #0b1a2e70;
+    }
+    .project-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+      color: #0b1a2e;
+    }
+    .project-card:hover h3 {
+      color: white;
+    }
+    .project-card p {
+      color: #334155;
+      line-height: 1.6;
+    }
+    .project-card:hover p {
+      color: #d4e0f0;
+    }
+
+    /* ----- contact (fresh and airy) ----- */
+    .contact {
+      padding: 3.5rem 2rem 4rem;
+      background: white;
+    }
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2rem;
+      margin: 2rem 0 2.5rem;
+    }
+    .contact-item {
+      background: #f6faff;
+      padding: 0.6rem 1.8rem;
+      border-radius: 60px;
+      border: 1px solid #dce6f2;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .contact-form {
+      max-width: 540px;
+    }
+    .contact-form label {
+      font-weight: 500;
+      color: #1e293b;
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1.5px solid #dce6f2;
+      border-radius: 18px;
+      margin-top: 0.25rem;
+      font-family: inherit;
+      font-size: 1rem;
+      background: white;
+      transition: 0.2s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px #2563eb20;
+    }
+    .contact-form .btn {
+      margin-top: 1.5rem;
+      border-radius: 40px;
+      background: #0b1a2e;
+      border: none;
+      padding: 0.75rem 2.8rem;
+      font-weight: 600;
+    }
+    .contact-form .btn:hover {
+      background: #1e3a6b;
+    }
+
+    /* ----- footer ----- */
+    footer {
+      background: #0b1a2e;
+      color: #b0c8e5;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f334b;
+    }
+
+    /* ----- responsive ----- */
+    @media (max-width: 800px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+      }
+      .hero-content {
+        max-width: 100%;
+      }
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .btn-group {
+        justify-content: center;
+      }
+      .hero-image img {
+        width: 200px;
+        height: 200px;
+        margin-top: 2rem;
+      }
+      header {
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      nav a {
+        margin: 0 0.8rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+    @media (max-width: 550px) {
+      .container { padding: 0 1rem; }
+      .hero-content h1 { font-size: 2.6rem; }
+      .skill-card { width: 100px; height: 100px; font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <h1>✦ Neyati</h1>
+    <p>AI &amp; ML · Developer</p>
+  </div>
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- hero -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="greeting">👋 Hello, I'm</div>
+    <h1>Neyati</h1>
+    <h2>AI &amp; ML · Student</h2>
+    <p>Third-year Computer Science student with a deep curiosity for intelligent systems, machine learning, and clean code. Building things that matter.</p>
+    <div class="btn-group">
+      <a href="#" class="btn">⬇ Resume</a>
+      <a href="#contact" class="btn btn-outline">✉ Contact</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="./ChatGPT Image Jul 25, 2026, 01_49_39 AM.png" alt="Neyati profile">
+  </div>
+</section>
+
+<!-- about -->
+<section class="about container" id="about">
+  <h2 class="section-title"><span class="badge">👤</span> About Me</h2>
+  <p>I'm Neyati, a Computer Science Engineering student specializing in <span class="highlight">Artificial Intelligence &amp; Machine Learning</span>. I love turning complex problems into elegant solutions — whether it's a neural network or a responsive web interface.</p>
+  <p><strong>Career Objective</strong><br>
+  To join a forward-thinking team where I can apply my skills in software development, AI, and ML, while continuously growing and contributing to meaningful projects.</p>
+</section>
+
+<!-- skills -->
+<section class="skills" id="skills">
+  <div class="container">
+    <h2 class="section-title"><span class="badge">⚙</span> Skills</h2>
+    <div class="skill-grid">
+      <div class="skill-card">Java</div>
+      <div class="skill-card">Python</div>
+      <div class="skill-card">HTML</div>
+      <div class="skill-card">CSS</div>
+      <div class="skill-card">JavaScript</div>
+      <div class="skill-card">SQL</div>
+      <div class="skill-card">ML</div>
+      <div class="skill-card">TensorFlow</div>
+    </div>
+  </div>
+</section>
+
+<!-- education -->
+<section class="education container" id="education">
+  <h2 class="section-title"><span class="badge">🎓</span> Education</h2>
+  <table class="edu-table">
+    <thead>
+      <tr><th>Degree</th><th>Institute</th><th>Year</th><th>CGPA / %</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>B.E. CSE (AI &amp; ML)</td><td>Chitkara University</td><td>2024</td><td>8.9 CGPA</td></tr>
+      <tr><td>12th</td><td>SGPC</td><td>2024</td><td>80%</td></tr>
+      <tr><td>10th</td><td>SGPC</td><td>2022</td><td>89%</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- projects -->
+<section class="projects" id="projects">
+  <div class="container">
+    <h2 class="section-title"><span class="badge">📁</span> Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Amazon Clone</h3>
+        <p>Front-end e-commerce experience with responsive product listings, cart UI, and navigation — built with HTML, CSS &amp; JavaScript.</p>
+      </div>
+      <div class="project-card">
+        <h3>Food Ordering System</h3>
+        <p>Full-stack web app for browsing menus, placing orders, and managing restaurants. Flask + SQL + vanilla JS.</p>
+      </div>
+      <div class="project-card">
+        <h3>Dairy Management</h3>
+        <p>Record-keeping system for milk collection, billing, and customer data. Built with Python, Flask, and SQLite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- contact -->
+<section class="contact container" id="contact">
+  <h2 class="section-title"><span class="badge">📧</span> Contact</h2>
+  <div class="contact-grid">
+    <div class="contact-item">📬 neyati@example.com</div>
+    <div class="contact-item">📞 +91 94713 38413</div>
+    <div class="contact-item">🔗 linkedin.com/in/neyati</div>
+    <div class="contact-item">🐙 github.com/neyati</div>
+  </div>
+
+  <h3 style="margin-top: 1.8rem; font-weight: 500; color: #0b1a2e;">Send a message</h3>
+  <form class="contact-form">
+    <label>Your name</label>
+    <input type="text" placeholder="e.g. Neyati" required>
+
+    <label>Email</label>
+    <input type="email" placeholder="neyati@domain.com" required>
+
+    <label>Message</label>
+    <textarea rows="4" placeholder="Write your message..."></textarea>
+
+    <button type="submit" class="btn">Send Message →</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Neyati · built with precision</p>
+</footer>
+
+</body>
+</html>
