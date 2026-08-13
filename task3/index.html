@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 450px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        #delete {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            margin-left: 10px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        #storedcontent {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid gray;
+            background: #fafafa;
+        }
+
+        #sessionUser {
+            color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form id="feedbackform">
+
+            <h2>Student Feedback Form</h2>
+
+            <label for="name">Student Name</label><br>
+            <input type="text" id="name">
+            <div class="error" id="nameerror"></div>
+
+            <label for="email">Email</label><br>
+            <input type="email" id="email">
+            <div class="error" id="emailerror"></div>
+
+            <label for="course">Course</label><br>
+
+            <select id="course">
+
+                <option value="">Select Course</option>
+                <option value="Science">Science</option>
+                <option value="Maths">Maths</option>
+                <option value="English">English</option>
+
+            </select>
+
+            <div class="error" id="courseerror"></div>
+
+            <label for="feedback">Feedback</label><br>
+
+            <textarea id="feedback"></textarea>
+
+            <div class="error" id="feedbackerror"></div>
+
+            <button type="submit">Submit Feedback</button>
+
+            <button type="button" id="delete">
+                Delete Stored Data
+            </button>
+
+        </form>
+
+        <h3 id="sessionUser"></h3>
+
+        <h2>Stored Feedback</h2>
+
+        <div id="storedcontent">
+            No feedback stored.
+        </div>
+
+    </div>
+
+    <script src="./scripts.js"></script>
+
+</body>
+
+</html>
