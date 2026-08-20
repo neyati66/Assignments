@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management API</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1> Product Management API</h1>
+    <p>Fake Store API - All operations logged in console and below</p>
+    
+    <div class="button-container">
+        <button class="btn-get" onclick="getProducts()"> View Products</button>
+        <button class="btn-post" onclick="addProduct()"> Add Product</button>
+        <button class="btn-put" onclick="updateProduct()"> Update Product</button>
+        <button class="btn-patch" onclick="updatePrice()"> Update Price</button>
+        <button class="btn-delete" onclick="deleteProduct()"> Delete Product</button>
+    </div>
+
+    <div id="output">Click a button to perform an operation. Results will appear here and in the console.</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
